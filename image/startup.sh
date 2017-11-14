@@ -13,7 +13,7 @@ if [ -n "$VNC_PASSWORD" ]; then
     sed -i 's/^command=x11vnc.*/& -rfbauth \/.password2/' /etc/supervisor/conf.d/supervisord.conf
     export VNC_PASSWORD=
 fi
-
+source /etc/profile
 cd /usr/lib/web && ./run.py > /var/log/web.log 2>&1 &
 nginx -c /etc/nginx/nginx.conf
 exec /bin/tini -- /usr/bin/supervisord -n
