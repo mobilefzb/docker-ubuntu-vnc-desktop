@@ -21,7 +21,7 @@ RUN apt-get update \
         supervisor \
         openssh-server pwgen sudo vim-tiny \
         net-tools \
-        lxde x11vnc xvfb \
+        x11vnc xvfb \
         gtk2-engines-murrine ttf-ubuntu-font-family \
         firefox \
         fonts-wqy-microhei \
@@ -32,6 +32,7 @@ RUN apt-get update \
         mesa-utils libgl1-mesa-dri \
         gnome-themes-standard gtk2-engines-pixbuf gtk2-engines-murrine pinta arc-theme \
         dbus-x11 x11-utils zenity cabextract \
+    && apt-get install -y lubuntu-desktop \
     && apt-get install -y fcitx fcitx-config-gtk fcitx-sunpinyin fcitx-module-cloudpinyin fcitx-table-all fcitx-googlepinyin im-config \
     && apt-get install -y wget unzip \
     && apt-get install -y --install-recommends winehq-devel \
