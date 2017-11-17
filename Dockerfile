@@ -34,7 +34,7 @@ RUN apt-get update \
         dbus-x11 x11-utils zenity cabextract \
     && apt-get install -y fcitx fcitx-config-gtk fcitx-sunpinyin fcitx-module-cloudpinyin fcitx-table-all fcitx-googlepinyin im-config \
     && apt-get install -y wget unzip \
-    && apt-get install -y --install-recommends winehq-stable \
+    && apt-get install -y --install-recommends winehq-devel \
     && apt-get autoclean \
     && apt-get autoremove \
     && rm -rf /var/lib/apt/lists/*
