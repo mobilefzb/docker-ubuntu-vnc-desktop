@@ -17,22 +17,16 @@ RUN apt-get update \
     && apt-add-repository https://dl.winehq.org/wine-builds/ubuntu/ \
     && apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF \
     && apt-get update \
-    && apt-get install -y --no-install-recommends --allow-unauthenticated \
+    && apt-get install -y --allow-unauthenticated \
         supervisor \
         openssh-server pwgen sudo vim-tiny \
         net-tools \
-        lxde x11vnc xvfb \
-        gtk2-engines-murrine ttf-ubuntu-font-family \
-        firefox \
+        ttf-ubuntu-font-family \
         fonts-wqy-microhei \
-        language-pack-zh-hant language-pack-gnome-zh-hant firefox-locale-zh-hant \
-        language-pack-zh-hans-base language-pack-gnome-zh-hans-base firefox-locale-zh-hans \
-        nginx \
-        python-pip python-dev build-essential \
-        mesa-utils libgl1-mesa-dri \
-        gnome-themes-standard gtk2-engines-pixbuf gtk2-engines-murrine pinta arc-theme \
-        dbus-x11 x11-utils zenity cabextract \
-    && apt-get install -y fcitx fcitx-config-gtk fcitx-sunpinyin fcitx-module-cloudpinyin fcitx-table-all fcitx-googlepinyin im-config \
+        language-pack-zh-hant language-pack-gnome-zh-hant \
+        language-pack-zh-hans-base language-pack-gnome-zh-hans-base \
+        python-pip python-dev build-essential pinta \
+        xauth zenity cabextract \
     && apt-get install -y wget unzip \
     && apt-get install -y --install-recommends winehq-staging \
     && apt-get autoclean \
@@ -47,9 +41,9 @@ RUN chmod +x /bin/tini
 ADD image /
 RUN wget -P /usr/bin https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks
 RUN chmod +x /usr/bin/winetricks
-RUN pip install --upgrade pip && pip install setuptools wheel && pip install -r /usr/lib/web/requirements.txt
-
-EXPOSE 80
+RUN pip install --upgrade pip && pip install setuptools wheel 
+RUN echo "root:123456" | chpasswd
+EXPOSE 22
 WORKDIR /root
 ENV HOME=/home/ubuntu \
     SHELL=/bin/bash
